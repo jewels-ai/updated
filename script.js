@@ -10,7 +10,6 @@ const jewelryOptions = document.getElementById('jewelry-options');
 
 let earringImg = null;
 let necklaceImg = null;
-let tiaraImg = null;
 let braceletImg = null;
 let ringImg = null;
 
@@ -42,7 +41,6 @@ async function changeJewelry(type, src) {
   // Clear all previous jewelry images
   earringImg = null;
   necklaceImg = null;
-  tiaraImg = null;
   braceletImg = null;
   ringImg = null;
 
@@ -50,8 +48,6 @@ async function changeJewelry(type, src) {
     earringImg = img;
   } else if (type.includes('necklaces')) {
     necklaceImg = img;
-  } else if (type.includes('tiara')) {
-    tiaraImg = img;
   } else if (type.includes('bracelet')) {
     braceletImg = img;
   } else if (type.includes('ring')) {
@@ -59,16 +55,18 @@ async function changeJewelry(type, src) {
   }
 }
 
-// Updated to hide/show appropriate buttons AND control the camera
+// Function to handle the main category buttons
 function toggleCategory(category) {
   jewelryOptions.style.display = 'none';
+  subcategoryButtons.style.display = 'none';
+  currentType = category;
 
   const isAccessoryCategory = ['bracelet', 'ring'].includes(category);
   if (isAccessoryCategory) {
-    subcategoryButtons.style.display = 'none';
+    // Hide subcategory buttons and show product options directly
     const jewelryCounts = {
-        bracelet: 7,
-        ring: 10,
+      bracelet: 7,
+      ring: 10,
     };
     const end = jewelryCounts[category] || 5;
     insertJewelryOptions(category, 'jewelry-options', 1, end);
@@ -76,23 +74,18 @@ function toggleCategory(category) {
     // Automatically switch to the back camera for bracelets and rings
     startCamera('environment');
   } else {
+    // Show subcategory buttons (Gold/Diamond) and a front camera
     subcategoryButtons.style.display = 'flex';
-    const subButtons = subcategoryButtons.querySelectorAll('button');
-    subButtons.forEach(btn => {
-      btn.style.display = btn.innerText.toLowerCase().includes(category) ? 'inline-block' : 'none';
-    });
-    earringImg = null;
-    necklaceImg = null;
-    // Automatically switch to the front camera for face jewelry
     startCamera('user');
   }
 }
 
-// This function remains largely the same
-function selectJewelryType(type) {
-  currentType = type;
+// Function to handle the subcategory buttons (Gold/Diamond)
+function selectJewelryType(mainType, subType) {
+  currentType = `${subType}_${mainType}`;
   subcategoryButtons.style.display = 'none';
   jewelryOptions.style.display = 'flex';
+  
   earringImg = null;
   necklaceImg = null;
 
@@ -103,8 +96,8 @@ function selectJewelryType(type) {
     diamond_necklaces: 6,
   };
 
-  const end = jewelryCounts[type] || 15;
-  insertJewelryOptions(type, 'jewelry-options', 1, end);
+  const end = jewelryCounts[currentType] || 15;
+  insertJewelryOptions(currentType, 'jewelry-options', 1, end);
 }
 
 // This function remains the same
@@ -206,7 +199,6 @@ videoElement.addEventListener('loadedmetadata', () => {
 function drawJewelry(faceLandmarks, handLandmarks, ctx) {
   const earringScale = 0.07;
   const necklaceScale = 0.18;
-  const tiaraScale = 0.2;
   const braceletScale = 0.15;
   const ringScale = 0.05;
   // Adjust this value to change the default angle of the bracelet.
@@ -231,10 +223,6 @@ function drawJewelry(faceLandmarks, handLandmarks, ctx) {
       x: neckLandmark.x * canvasElement.width - 8,
       y: neckLandmark.y * canvasElement.height + 10,
     };
-    const foreheadPos = {
-        x: foreheadLandmark.x * canvasElement.width,
-        y: foreheadLandmark.y * canvasElement.height,
-    };
 
     if (earringImg) {
       const width = earringImg.width * earringScale;
@@ -246,11 +234,6 @@ function drawJewelry(faceLandmarks, handLandmarks, ctx) {
       const width = necklaceImg.width * necklaceScale;
       const height = necklaceImg.height * necklaceScale;
       ctx.drawImage(necklaceImg, neckPos.x - width / 2, neckPos.y, width, height);
-    }
-    if (tiaraImg) {
-      const width = tiaraImg.width * tiaraScale;
-      const height = tiaraImg.height * tiaraScale;
-      ctx.drawImage(tiaraImg, foreheadPos.x - width / 2, foreheadPos.y - height, width, height);
     }
   }
 
