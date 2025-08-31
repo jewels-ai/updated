@@ -10,7 +10,6 @@ const jewelryOptions = document.getElementById('jewelry-options');
 
 let earringImg = null;
 let necklaceImg = null;
-let tiaraImg = null;
 let braceletImg = null;
 let ringImg = null;
 
@@ -42,7 +41,6 @@ async function changeJewelry(type, src) {
   // Clear all previous jewelry images
   earringImg = null;
   necklaceImg = null;
-  tiaraImg = null;
   braceletImg = null;
   ringImg = null;
 
@@ -50,8 +48,6 @@ async function changeJewelry(type, src) {
     earringImg = img;
   } else if (type.includes('necklaces')) {
     necklaceImg = img;
-  } else if (type.includes('tiara')) {
-    tiaraImg = img;
   } else if (type.includes('bracelet')) {
     braceletImg = img;
   } else if (type.includes('ring')) {
