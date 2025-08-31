@@ -12,7 +12,6 @@ body, html {
   background-color: #0b0b0b;
   font-family: 'Poppins', sans-serif;
   color: #fff;
-  /* Removed overflow: hidden; to allow scrolling */
 }
 
 video, canvas {
@@ -52,7 +51,61 @@ video, canvas {
   margin-right: 8px;
 }
 
-/* Main Jewelry Category Buttons (Gold / Diamond) */
+/* New container for UI buttons */
+.ui-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* Snapshot Button */
+#snapshot-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#snapshot-btn img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Info Button */
+#info-btn {
+  background-color: #5E0F8B;
+  color: #ffffff;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Location Button */
+#location-btn {
+  background-color: #5E0F8B;
+  color: #ffffff;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#location-btn img {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+/* Main Jewelry Category Buttons */
 #jewelry-mode {
   position: fixed;
   bottom: 10px;
@@ -83,17 +136,15 @@ video, canvas {
   background-color: #3b0764;
 }
 
-/* Subcategory Buttons (Gold Earrings, Gold Necklaces, etc.) */
+/* This is the new position for the subcategory buttons */
 #subcategory-buttons {
   position: fixed;
-  bottom: 130px; /* Adjusted to move it up */
-  left: 0;
-  width: 100%;
-  justify-content: center;
-  transform: none;
-  z-index: 5;
+  bottom: 70px; 
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 12px;
+  z-index: 5;
   background: rgba(0, 0, 0, 0.6);
   padding: 8px 12px;
   border-radius: 10px;
@@ -110,13 +161,12 @@ video, canvas {
   font-weight: bold;
 }
 
-/* Jewelry Options Scroll List (Product Line) */
+/* This is the new position for the product list */
 .options-group {
   position: fixed;
-  bottom: 70px; /* Adjusted to move it down */
-  left: 0;
-  width: 100%;
-  transform: none;
+  bottom: 130px; 
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 15px;
   z-index: 2;
@@ -126,6 +176,7 @@ video, canvas {
   border-radius: 16px;
   overflow-x: auto;
   scrollbar-width: none;
+  width: auto;
 }
 
 .options-group::-webkit-scrollbar {
@@ -149,41 +200,6 @@ video, canvas {
 .options-group button:hover img {
   border: 2px solid #fff;
   transform: scale(1.05);
-}
-
-/* Snapshot Button */
-#snapshot-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-}
-
-#snapshot-btn img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
-/* Info Button */
-#info-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #5E0F8B;
-  color: #ffffff;
-  border: none;
-  padding: 10px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 10;
 }
 
 /* Info Modal */
@@ -246,35 +262,4 @@ video, canvas {
   background: #5E0F8B;
   color: #ffffff;
   cursor: pointer;
-}
-
-/* Location Button */
-#location-btn {
-  position: fixed;
-  bottom: 10px;
-  left: 20px;
-  background-color: #5E0F8B;
-  color: #ffffff;
-  border: none;
-  padding: 5px 5px;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 10;
-}
-
-/* Optional: location modal if used */
-#location-modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.95);
-  color: #000;
-  padding: 20px;
-  border-radius: 12px;
-  z-index: 9999;
-  max-width: 90%;
-  width: 400px;
-  text-align: center;
 }
