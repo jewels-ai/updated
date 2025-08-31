@@ -17,30 +17,6 @@
     <img src="logo.png" alt="Overlay Jewels Logo" class="logo-icon" />
   </div>
 
-  <dialog id="snapshot-modal">
-    <h3>Snapshot Preview</h3>
-    <img id="snapshot-preview" src="" alt="Snapshot" />
-    <div class="snapshot-buttons">
-      <button onclick="saveSnapshot()">Save</button>
-      <button onclick="shareSnapshot()">Share</button>
-      <button onclick="closeSnapshotModal()">Close</button>
-    </div>
-  </dialog>
-
-  <div id="subcategory-buttons" class="button-group" style="display: none;">
-    <button onclick="selectJewelryType(currentType, 'gold')">Gold</button>
-    <button onclick="selectJewelryType(currentType, 'diamond')">Diamond</button>
-  </div>
-  
-  <div id="jewelry-options" class="options-group" style="display: none;"></div>
-
-  <div id="jewelry-mode" class="button-group">
-    <button onclick="toggleCategory('earrings')">EARRINGS</button>
-    <button onclick="toggleCategory('necklaces')">CHAINS</button>
-    <button onclick="toggleCategory('bracelet')">Bracelets</button>
-    <button onclick="toggleCategory('ring')">Rings</button>
-  </div>
-  
   <div class="ui-buttons">
     <button id="snapshot-btn" onclick="takeSnapshot()">
       <img src="camera-icon.png" alt="Take Snapshot" />
@@ -50,6 +26,30 @@
     </a>
     <button id="info-btn" onclick="toggleInfoModal()">ℹ️</button>
   </div>
+  
+  <div id="jewelry-mode" class="button-group">
+    <button onclick="toggleCategory('earrings')">EARRINGS</button>
+    <button onclick="toggleCategory('necklaces')">CHAINS</button>
+    <button onclick="toggleCategory('bracelet')">Bracelets</button>
+    <button onclick="toggleCategory('ring')">Rings</button>
+  </div>
+
+  <div id="subcategory-buttons" class="button-group" style="display: none;">
+    <button onclick="selectJewelryType(currentType, 'gold')">Gold</button>
+    <button onclick="selectJewelryType(currentType, 'diamond')">Diamond</button>
+  </div>
+  
+  <div id="jewelry-options" class="options-group" style="display: none;"></div>
+  
+  <dialog id="snapshot-modal">
+    <h3>Snapshot Preview</h3>
+    <img id="snapshot-preview" src="" alt="Snapshot" />
+    <div class="snapshot-buttons">
+      <button onclick="saveSnapshot()">Save</button>
+      <button onclick="shareSnapshot()">Share</button>
+      <button onclick="closeSnapshotModal()">Close</button>
+    </div>
+  </dialog>
 
   <dialog id="info-modal">
     <h3>How to Use the Try-On App</h3>
